@@ -6,6 +6,11 @@ I know enough Python and Flask to be dangerous but this is 100% "vibe coded" usi
 
 I only have Belkin WeMo smart plugs and it works well enough for these. I can't speak to the functionality of other types of devices.
 
+## TODO
+
+- Scheduling
+- "Away mode" for random on/off functionality
+
 ## Features
 
 - **Device Discovery**: Automatically discover WeMo devices on your network
