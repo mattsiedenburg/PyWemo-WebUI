@@ -1,0 +1,6 @@
+# Core dependencies with pinned versions for reproducible builds
+Flask==3.1.2
+pywemo==1.4.0
+
+# Optional: Use uvloop for better async performance (if needed in future)
+# uvloop==0.21.0

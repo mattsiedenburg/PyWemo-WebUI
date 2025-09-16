@@ -1,0 +1,13 @@
+services:
+  pywemo:
+    build: .
+    container_name: pywemo
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    working_dir: /app
+    # Use the default bridge network but with access to host network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

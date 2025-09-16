@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyWemo API - Device Control</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="clock-display" id="clockDisplay">
+                        <div class="clock-time" id="clockTime">00:00:00</div>
+                        <div class="clock-date" id="clockDate">Loading...</div>
+                    </div>
+                </div>
+                <div class="header-center">
+                    <h1>🏠 WeMo Device Control</h1>
+                    <p>Control your Belkin WeMo devices through a simple web interface</p>
+                </div>
+                <div class="header-right">
+                    <div class="theme-selector" id="themeSelector">
+                        <button class="theme-option light-option" data-theme="light" title="Light theme">
+                            <span class="theme-icon">☀️</span>
+                        </button>
+                        <button class="theme-option dark-option" data-theme="dark" title="Dark theme">
+                            <span class="theme-icon">🌙</span>
+                        </button>
+                        <button class="theme-option auto-option" data-theme="auto" title="Auto (system) theme">
+                            <span class="theme-icon">🌑</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls-section">
+            <div class="control-group">
+                <button id="refreshBtn" class="btn btn-primary">🔄 Refresh Devices</button>
+                <button id="networkScanBtn" class="btn btn-success">🔍 Network Scan</button>
+                <button id="customNetworkScanBtn" class="btn btn-info">🌐 Custom Network Scan</button>
+                <button id="addDeviceBtn" class="btn btn-secondary">➕ Add Device by IP</button>
+                <button id="forgetAllBtn" class="btn btn-danger">🗑️ Forget All Devices</button>
+            </div>
+            
+            <!-- Scan Progress Section -->
+            <div id="scanProgressSection" class="scan-progress-section" style="display: none;">
+                <div class="progress-header">
+                    <h3 id="scanProgressTitle">🔍 Network Scan in Progress</h3>
+                    <button id="cancelScanBtn" class="btn btn-danger btn-small">❌ Cancel Scan</button>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progressBarFill" class="progress-bar-fill" style="width: 0%"></div>
+                        <div id="progressBarText" class="progress-bar-text">0%</div>
+                    </div>
+                </div>
+                
+                <div class="progress-details">
+                    <div id="scanCurrentStep" class="scan-step">Starting scan...</div>
+                    <div class="progress-stats">
+                        <div class="progress-stat">
+                            <span class="stat-label">Network:</span>
+                            <span id="scanNetworkRange" class="stat-value">-</span>
+                        </div>
+                        <div class="progress-stat">
+                            <span class="stat-label">Progress:</span>
+                            <span id="scanIpsProgress" class="stat-value">0 / 0 IPs</span>
+                        </div>
+                        <div class="progress-stat">
+                            <span class="stat-label">Found:</span>
+                            <span id="scanDevicesFound" class="stat-value">0 devices</span>
+                        </div>
+                        <div class="progress-stat">
+                            <span class="stat-label">Elapsed:</span>
+                            <span id="scanElapsedTime" class="stat-value">0s</span>
+                        </div>
+                        <div class="progress-stat">
+                            <span class="stat-label">ETA:</span>
+                            <span id="scanEstimatedTime" class="stat-value">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="discoveryStatus" class="discovery-status"></div>
+            <div id="status" class="status-message"></div>
+        </div>
+
+        <!-- Add Device Modal -->
+        <div id="addDeviceModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add Device(s) by IP Address</h2>
+                <form id="addDeviceForm">
+                    <div class="form-group">
+                        <label for="deviceIP">Device IP Address(es):</label>
+                        <input type="text" id="deviceIP" placeholder="192.168.1.100, 192.168.1.101; 192.168.1.102" required>
+                        <small class="help-text">
+                            You can add multiple devices by separating IP addresses with:<br>
+                            • Commas: <code>192.168.1.100, 192.168.1.101</code><br>
+                            • Semicolons: <code>192.168.1.100; 192.168.1.101</code><br>
+                            • Spaces: <code>192.168.1.100 192.168.1.101</code>
+                        </small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Device(s)</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Custom Network Scan Modal -->
+        <div id="customNetworkModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>🌐 Custom Network Scan</h2>
+                <form id="customNetworkForm">
+                    <div class="form-group">
+                        <label for="networkRange">Network Range:</label>
+                        <input type="text" id="networkRange" placeholder="192.168.1.0/24" required>
+                        <small class="help-text">
+                            Examples:<br>
+                            • CIDR notation: <code>192.168.1.0/24</code><br>
+                            • Subnet mask: <code>192.168.1.0/255.255.255.0</code><br>
+                            • Single IP: <code>192.168.1.100</code>
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="scanTimeout">Scan Timeout (seconds):</label>
+                        <input type="number" id="scanTimeout" value="15" min="5" max="60">
+                        <small class="help-text">Higher values are more thorough but slower</small>
+                    </div>
+                    <div id="networkValidationResult" class="validation-result"></div>
+                    <div class="form-actions">
+                        <button type="button" id="validateNetworkBtn" class="btn btn-info">🔍 Validate Network</button>
+                        <button type="submit" id="startCustomScanBtn" class="btn btn-primary" disabled>🚀 Start Scan</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeCustomNetworkModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Status Monitoring Section -->
+        <div class="status-monitoring-section">
+            <div class="status-controls">
+                <div class="status-control-group">
+                    <h3>🔄 Real-time Status Monitoring</h3>
+                    <div class="monitoring-controls">
+                        <button id="toggleStatusPollingBtn" class="btn btn-success">🔄 Enable Auto-Refresh</button>
+                        <div class="frequency-control">
+                            <label for="statusPollingFrequency">Update every:</label>
+                            <input type="number" id="statusPollingFrequency" min="5" max="300" step="5" placeholder="30">
+                            <span>seconds</span>
+                        </div>
+                        <button id="manualRefreshStatusBtn" class="btn btn-info btn-small">🔄 Update Now</button>
+                    </div>
+                </div>
+                <div id="connectionStatusIndicator" class="connection-status status-empty">
+                    <span class="status-icon">📱</span>
+                    <span class="status-text">No devices</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Devices Section -->
+        <div class="devices-section">
+            <div class="devices-header">
+                <h2>📱 Discovered Devices</h2>
+                <div id="bulkControlsSection" class="bulk-controls" style="display: none;">
+                    <span class="bulk-controls-label">Bulk Actions:</span>
+                    <button id="turnAllOnBtn" class="btn btn-success btn-small">🟢 Turn All ON</button>
+                    <button id="turnAllOffBtn" class="btn btn-danger btn-small">🔴 Turn All OFF</button>
+                </div>
+            </div>
+            <div id="devicesContainer" class="devices-grid">
+                <div class="loading">Loading devices...</div>
+            </div>
+        </div>
+
+        <!-- Device Methods Modal -->
+        <div id="methodModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="methodModalTitle">Device Methods</h2>
+                <div id="methodsContainer" class="methods-container">
+                    <div class="loading">Loading methods...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Method Arguments Modal -->
+        <div id="argsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="argsModalTitle">Method Parameters</h2>
+                <form id="methodArgsForm">
+                    <div class="form-group">
+                        <label for="methodArgs">Arguments (JSON array):</label>
+                        <input type="text" id="methodArgs" placeholder='[100, "parameter"]' value="[]">
+                        <small>Enter arguments as a JSON array, e.g., [75] for brightness</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="methodKwargs">Keyword Arguments (JSON object):</label>
+                        <input type="text" id="methodKwargs" placeholder='{"key": "value"}' value="{}">
+                        <small>Enter keyword arguments as a JSON object</small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Execute Method</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeArgsModal()">Cancel</button>
+                    </div>
+                </form>
+                <div id="methodResult" class="method-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
