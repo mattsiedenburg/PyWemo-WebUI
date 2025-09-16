@@ -1,80 +1,80 @@
 /* CSS Variables for theming */
 :root {
-    /* Light theme colors */
-    --bg-primary: #667eea;
-    --bg-secondary: #764ba2;
+    /* Professional light theme colors */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
     --bg-surface: rgba(255, 255, 255, 0.95);
     --bg-card: white;
-    --bg-input: #f7fafc;
-    --bg-hover: rgba(66, 153, 225, 0.1);
+    --bg-input: #f8fafc;
+    --bg-hover: rgba(71, 85, 105, 0.05);
     
-    --text-primary: #333;
-    --text-secondary: #4a5568;
-    --text-tertiary: #718096;
-    --text-muted: #a0aec0;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-tertiary: #64748b;
+    --text-muted: #94a3b8;
     --text-inverse: white;
     
     --border-color: #e2e8f0;
-    --border-accent: #4299e1;
+    --border-accent: #475569;
     
-    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     
-    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-primary: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     
-    /* Button colors */
-    --btn-primary-bg: #4299e1;
-    --btn-primary-hover: #3182ce;
-    --btn-secondary-bg: #718096;
-    --btn-secondary-hover: #4a5568;
-    --btn-success-bg: #48bb78;
-    --btn-success-hover: #38a169;
-    --btn-danger-bg: #f56565;
-    --btn-danger-hover: #e53e3e;
-    --btn-info-bg: #0bc5ea;
-    --btn-info-hover: #0987a0;
-    --btn-disabled-bg: #cbd5e0;
-    --btn-disabled-color: #a0aec0;
+    /* Professional button colors */
+    --btn-primary-bg: #475569;
+    --btn-primary-hover: #334155;
+    --btn-secondary-bg: #64748b;
+    --btn-secondary-hover: #475569;
+    --btn-success-bg: #059669;
+    --btn-success-hover: #047857;
+    --btn-danger-bg: #dc2626;
+    --btn-danger-hover: #b91c1c;
+    --btn-info-bg: #0891b2;
+    --btn-info-hover: #0e7490;
+    --btn-disabled-bg: #e2e8f0;
+    --btn-disabled-color: #94a3b8;
 }
 
-/* Dark theme colors */
+/* Professional dark theme colors */
 [data-theme="dark"] {
-    --bg-primary: #1a1a2e;
-    --bg-secondary: #16213e;
-    --bg-surface: rgba(31, 41, 55, 0.95);
-    --bg-card: #374151;
-    --bg-input: #4b5563;
-    --bg-hover: rgba(99, 102, 241, 0.2);
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-surface: rgba(30, 41, 59, 0.95);
+    --bg-card: #1e293b;
+    --bg-input: #334155;
+    --bg-hover: rgba(148, 163, 184, 0.1);
     
-    --text-primary: #f9fafb;
-    --text-secondary: #d1d5db;
-    --text-tertiary: #9ca3af;
-    --text-muted: #6b7280;
-    --text-inverse: #1f2937;
+    --text-primary: #f8fafc;
+    --text-secondary: #e2e8f0;
+    --text-tertiary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-inverse: #0f172a;
     
-    --border-color: #4b5563;
-    --border-accent: #6366f1;
+    --border-color: #334155;
+    --border-accent: #64748b;
     
-    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
     
-    --gradient-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --gradient-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     
-    /* Dark mode button colors */
-    --btn-primary-bg: #6366f1;
-    --btn-primary-hover: #4f46e5;
-    --btn-secondary-bg: #6b7280;
-    --btn-secondary-hover: #4b5563;
-    --btn-success-bg: #10b981;
-    --btn-success-hover: #059669;
-    --btn-danger-bg: #ef4444;
-    --btn-danger-hover: #dc2626;
-    --btn-info-bg: #06b6d4;
-    --btn-info-hover: #0891b2;
-    --btn-disabled-bg: #4b5563;
-    --btn-disabled-color: #6b7280;
+    /* Professional dark mode button colors */
+    --btn-primary-bg: #64748b;
+    --btn-primary-hover: #475569;
+    --btn-secondary-bg: #475569;
+    --btn-secondary-hover: #334155;
+    --btn-success-bg: #059669;
+    --btn-success-hover: #047857;
+    --btn-danger-bg: #dc2626;
+    --btn-danger-hover: #b91c1c;
+    --btn-info-bg: #0891b2;
+    --btn-info-hover: #0e7490;
+    --btn-disabled-bg: #334155;
+    --btn-disabled-color: #64748b;
 }
 
 /* Smooth theme transitions */
@@ -139,15 +139,18 @@ header {
 }
 
 .header-center h1 {
-    color: var(--text-secondary);
-    font-size: 2.5rem;
-    margin: 0 0 10px 0;
+    color: var(--text-primary);
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
     text-align: center;
+    letter-spacing: -0.025em;
 }
 
 .header-center p {
     color: var(--text-tertiary);
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 400;
     margin: 0;
     text-align: center;
 }
@@ -420,16 +423,17 @@ header {
 
 .device-card {
     background: var(--bg-card);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 20px;
     box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-    border-left: 4px solid var(--border-accent);
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
 }
 
 .device-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-md);
+    border-color: var(--border-accent);
 }
 
 .device-header {
@@ -454,21 +458,21 @@ header {
 }
 
 .device-state.state-on {
-    background: linear-gradient(135deg, #48bb78, #38a169);
+    background: #059669;
     color: white;
-    box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+    box-shadow: 0 1px 2px rgba(5, 150, 105, 0.2);
 }
 
 .device-state.state-off {
-    background: linear-gradient(135deg, #cbd5e0, #a0aec0);
-    color: #4a5568;
-    box-shadow: 0 2px 8px rgba(160, 174, 192, 0.3);
+    background: #64748b;
+    color: white;
+    box-shadow: 0 1px 2px rgba(100, 116, 139, 0.2);
 }
 
 .device-state.state-unknown {
-    background: linear-gradient(135deg, #fed7a1, #f6ad55);
-    color: #744210;
-    box-shadow: 0 2px 8px rgba(246, 173, 85, 0.3);
+    background: #d97706;
+    color: white;
+    box-shadow: 0 1px 2px rgba(217, 119, 6, 0.2);
 }
 
 .state-indicator {
@@ -555,16 +559,15 @@ header {
 }
 
 .device-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
 }
 
 .device-actions .btn {
-    flex: 1;
-    min-width: 100px;
     font-size: 0.9rem;
     padding: 8px 16px;
+    text-align: center;
 }
 
 /* Loading states */
@@ -1155,10 +1158,10 @@ header {
 .status-monitoring-section {
     margin: 20px 0;
     padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 12px;
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: var(--bg-surface);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
 }
 
 .status-controls {
@@ -1172,7 +1175,7 @@ header {
     margin: 0 0 15px 0;
     font-size: 1.2rem;
     font-weight: 600;
-    color: white;
+    color: var(--text-secondary);
 }
 
 .monitoring-controls {
@@ -1186,25 +1189,26 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
     padding: 8px 12px;
     border-radius: 6px;
-    color: white;
+    color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
 .frequency-control label {
-    color: white;
+    color: var(--text-secondary);
     font-weight: 500;
 }
 
 .frequency-control input[type="number"] {
     width: 60px;
     padding: 4px 6px;
-    border: none;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
-    background: white;
-    color: #333;
+    background: var(--bg-card);
+    color: var(--text-primary);
     text-align: center;
 }
 
@@ -1213,7 +1217,8 @@ header {
     align-items: center;
     gap: 10px;
     padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     font-weight: 500;
     min-width: 200px;
@@ -1226,12 +1231,12 @@ header {
 
 .connection-status .status-text {
     font-size: 0.95rem;
-    color: white;
+    color: var(--text-secondary);
 }
 
 .connection-status .status-time {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-tertiary);
     margin-left: 5px;
 }
 
@@ -1258,16 +1263,16 @@ header {
 
 /* Device connection status indicators */
 .device-card.card-online {
-    border-left: 4px solid #48bb78;
+    border-left: 3px solid #059669;
 }
 
 .device-card.card-offline {
-    border-left: 4px solid #f56565;
-    opacity: 0.7;
+    border-left: 3px solid #dc2626;
+    opacity: 0.75;
 }
 
 .device-card.card-unknown {
-    border-left: 4px solid #ed8936;
+    border-left: 3px solid #d97706;
 }
 
 .device-state.device-offline {

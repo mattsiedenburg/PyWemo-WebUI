@@ -282,17 +282,17 @@ function renderDevices(devicesData) {
             </div>
             
             <div class="device-actions">
-                <button class="btn btn-primary" onclick="showDeviceMethods('${escapeHtml(device.udn)}', '${escapeHtml(device.name)}')">
-                    🔧 Control Device
+                <button class="btn btn-primary" onclick="quickAction('${escapeHtml(device.udn)}', 'toggle')">
+                    Toggle
                 </button>
                 <button class="btn btn-success" onclick="quickAction('${escapeHtml(device.udn)}', 'get_state')">
-                    📊 Get State
+                    Get State
                 </button>
-                <button class="btn btn-secondary" onclick="quickAction('${escapeHtml(device.udn)}', 'toggle')">
-                    🔄 Toggle
+                <button class="btn btn-secondary" onclick="showDeviceMethods('${escapeHtml(device.udn)}', '${escapeHtml(device.name)}')">
+                    Control Device
                 </button>
                 <button class="btn btn-danger" onclick="forgetDevice('${escapeHtml(device.udn)}', '${escapeHtml(device.name)}')">
-                    🗑️ Forget
+                    Remove
                 </button>
             </div>
         </div>
@@ -445,7 +445,8 @@ function setTheme(theme) {
         const systemMode = isSystemDark ? 'dark' : 'light';
         message = `🌑 Auto mode (following system: ${systemMode})`;
     } else {
-        message = `🌈 Switched to ${currentTheme} mode`;
+        const themeIcon = currentTheme === 'dark' ? '🌙' : '☀️';
+        message = `${themeIcon} Switched to ${currentTheme} mode`;
     }
     showStatus(message, 'success');
 }

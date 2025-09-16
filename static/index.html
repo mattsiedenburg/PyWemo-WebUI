@@ -17,8 +17,8 @@
                     </div>
                 </div>
                 <div class="header-center">
-                    <h1>🏠 WeMo Device Control</h1>
-                    <p>Control your Belkin WeMo devices through a simple web interface</p>
+                    <h1>WeMo Device Management</h1>
+                    <p>Enterprise device control and monitoring interface</p>
                 </div>
                 <div class="header-right">
                     <div class="theme-selector" id="themeSelector">
@@ -38,18 +38,18 @@
 
         <div class="controls-section">
             <div class="control-group">
-                <button id="refreshBtn" class="btn btn-primary">🔄 Refresh Devices</button>
-                <button id="networkScanBtn" class="btn btn-success">🔍 Network Scan</button>
-                <button id="customNetworkScanBtn" class="btn btn-info">🌐 Custom Network Scan</button>
-                <button id="addDeviceBtn" class="btn btn-secondary">➕ Add Device by IP</button>
-                <button id="forgetAllBtn" class="btn btn-danger">🗑️ Forget All Devices</button>
+                <button id="refreshBtn" class="btn btn-primary">Refresh Devices</button>
+                <button id="networkScanBtn" class="btn btn-success">Network Scan</button>
+                <button id="customNetworkScanBtn" class="btn btn-info">Custom Network Scan</button>
+                <button id="addDeviceBtn" class="btn btn-secondary">Add Device by IP</button>
+                <button id="forgetAllBtn" class="btn btn-danger">Remove All Devices</button>
             </div>
             
             <!-- Scan Progress Section -->
             <div id="scanProgressSection" class="scan-progress-section" style="display: none;">
                 <div class="progress-header">
-                    <h3 id="scanProgressTitle">🔍 Network Scan in Progress</h3>
-                    <button id="cancelScanBtn" class="btn btn-danger btn-small">❌ Cancel Scan</button>
+                    <h3 id="scanProgressTitle">Network Scan in Progress</h3>
+                    <button id="cancelScanBtn" class="btn btn-danger btn-small">Cancel Scan</button>
                 </div>
                 
                 <div class="progress-container">
@@ -118,7 +118,7 @@
         <div id="customNetworkModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>🌐 Custom Network Scan</h2>
+                <h2>Custom Network Scan</h2>
                 <form id="customNetworkForm">
                     <div class="form-group">
                         <label for="networkRange">Network Range:</label>
@@ -137,8 +137,8 @@
                     </div>
                     <div id="networkValidationResult" class="validation-result"></div>
                     <div class="form-actions">
-                        <button type="button" id="validateNetworkBtn" class="btn btn-info">🔍 Validate Network</button>
-                        <button type="submit" id="startCustomScanBtn" class="btn btn-primary" disabled>🚀 Start Scan</button>
+                        <button type="button" id="validateNetworkBtn" class="btn btn-info">Validate Network</button>
+                        <button type="submit" id="startCustomScanBtn" class="btn btn-primary" disabled>Start Scan</button>
                         <button type="button" class="btn btn-secondary" onclick="closeCustomNetworkModal()">Cancel</button>
                     </div>
                 </form>
@@ -149,19 +149,19 @@
         <div class="status-monitoring-section">
             <div class="status-controls">
                 <div class="status-control-group">
-                    <h3>🔄 Real-time Status Monitoring</h3>
+                    <h3>Real-time Status Monitoring</h3>
                     <div class="monitoring-controls">
-                        <button id="toggleStatusPollingBtn" class="btn btn-success">🔄 Enable Auto-Refresh</button>
+                        <button id="toggleStatusPollingBtn" class="btn btn-success">Enable Auto-Refresh</button>
                         <div class="frequency-control">
                             <label for="statusPollingFrequency">Update every:</label>
                             <input type="number" id="statusPollingFrequency" min="5" max="300" step="5" placeholder="30">
                             <span>seconds</span>
                         </div>
-                        <button id="manualRefreshStatusBtn" class="btn btn-info btn-small">🔄 Update Now</button>
+                        <button id="manualRefreshStatusBtn" class="btn btn-info btn-small">Update Now</button>
                     </div>
                 </div>
                 <div id="connectionStatusIndicator" class="connection-status status-empty">
-                    <span class="status-icon">📱</span>
+                    <span class="status-icon">•</span>
                     <span class="status-text">No devices</span>
                 </div>
             </div>
@@ -170,11 +170,11 @@
         <!-- Devices Section -->
         <div class="devices-section">
             <div class="devices-header">
-                <h2>📱 Discovered Devices</h2>
+                <h2>Discovered Devices</h2>
                 <div id="bulkControlsSection" class="bulk-controls" style="display: none;">
                     <span class="bulk-controls-label">Bulk Actions:</span>
-                    <button id="turnAllOnBtn" class="btn btn-success btn-small">🟢 Turn All ON</button>
-                    <button id="turnAllOffBtn" class="btn btn-danger btn-small">🔴 Turn All OFF</button>
+                    <button id="turnAllOnBtn" class="btn btn-success btn-small">Turn All ON</button>
+                    <button id="turnAllOffBtn" class="btn btn-danger btn-small">Turn All OFF</button>
                 </div>
             </div>
             <div id="devicesContainer" class="devices-grid">

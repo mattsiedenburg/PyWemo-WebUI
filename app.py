@@ -1299,12 +1299,16 @@ def get_devices_status():
             for device in devices
         }
         
-        # Collect results as they complete with proper timeout handling
+        # Collect results as they complete with individual timeout handling
+        processed_devices = set()
+        
         try:
-            for future in as_completed(future_to_device, timeout=15):
+            for future in as_completed(future_to_device, timeout=20):
                 device = future_to_device[future]
+                processed_devices.add(device)
+                
                 try:
-                    device_status = future.result(timeout=8)
+                    device_status = future.result(timeout=10)
                     device_statuses.append(device_status)
                     
                     # Count status types
@@ -1316,7 +1320,7 @@ def get_devices_status():
                         unknown_count += 1
                         
                 except Exception as e:
-                    # Fallback for failed status checks
+                    # Individual device failed - mark only this device as offline
                     logger.debug(f"Failed to get status for device {device.name}: {e}")
                     device_status = {
                         "name": device.name,
@@ -1330,29 +1334,26 @@ def get_devices_status():
                     }
                     device_statuses.append(device_status)
                     offline_count += 1
+        
         except TimeoutError:
-            # Handle the case where some futures didn't complete in time
-            logger.warning("Some device status checks timed out")
-            
-            # Process any remaining unfinished futures as offline
-            for future, device in future_to_device.items():
-                if not future.done():
-                    logger.debug(f"Device {device.name} status check timed out, marking as offline")
-                    device_status = {
-                        "name": device.name,
-                        "udn": device.udn,
-                        "model": getattr(device, "model_name", "Unknown"),
-                        "ip_address": getattr(device, "host", None),
-                        "state": "unknown",
-                        "connection_status": "offline",
-                        "last_seen": None,
-                        "error": "Connection timeout"
-                    }
-                    device_statuses.append(device_status)
-                    offline_count += 1
-                    
-                    # Cancel the remaining future to clean up
-                    future.cancel()
+            logger.warning("Overall timeout reached for device status checks")
+        
+        # Handle any devices that weren't processed
+        for device in devices:
+            if device not in processed_devices:
+                logger.warning(f"Device {device.name} was not processed, marking as offline")
+                device_status = {
+                    "name": device.name,
+                    "udn": device.udn,
+                    "model": getattr(device, "model_name", "Unknown"),
+                    "ip_address": getattr(device, "host", None),
+                    "state": "unknown",
+                    "connection_status": "offline",
+                    "last_seen": None,
+                    "error": "Device not processed - timeout"
+                }
+                device_statuses.append(device_status)
+                offline_count += 1
     
     return jsonify({
         "devices": device_statuses,
