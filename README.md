@@ -6,7 +6,7 @@ A Flask-based REST API that provides HTTP access to Belkin WeMo smart home devic
 
 I know enough Python and Flask to be dangerous but this is 100% "vibe coded" using GitHub Copilot with ChatGPT for the API and Claude Sonnet 4 for the web UI. 
 
-This might be the worst, buggiest, most inefficient, most insecure implementation!
+This might be the worst, ugliest, buggiest, most inefficient, most insecure implementation! You've been warned!
 
 I only have Belkin WeMo smart plugs and it works well enough for these. I can't speak to the functionality of other types of devices.
 
