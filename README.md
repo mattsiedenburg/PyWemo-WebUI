@@ -12,6 +12,12 @@ I only have Belkin WeMo smart plugs and it works well enough for these. I can't 
 
 **Please don't ask me for support! You'll probably get better answers from ChatGPT! ;)**
 
+## Screenshot
+
+![PyWemo API Web Interface](webui.png)
+
+*The modern web interface for controlling your WeMo devices*
+
 ## TODO
 
 - Scheduling
