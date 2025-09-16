@@ -3,6 +3,7 @@
 A Flask-based REST API that provides HTTP access to Belkin WeMo smart home devices using the [pywemo](https://github.com/pywemo/pywemo) library.
 
 **DISCLAIMER**
+
 I know enough Python and Flask to be dangerous but this is 100% "vibe coded" using GitHub Copilot with ChatGPT for the API and Claude Sonnet 4 for the web UI. Please don't ask me for support! ;)
 
 I only have Belkin WeMo smart plugs and it works well enough for these. I can't speak to the functionality of other types of devices.
